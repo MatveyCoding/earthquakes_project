@@ -1,0 +1,29 @@
+# Виртуальное окружение
+myenv/
+venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Секреты
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Временные файлы
+*.log
+*.tmp
+.DS_Store
+
+# Данные 
+data/
+*.csv
+*.parquet
