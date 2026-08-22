@@ -5,7 +5,7 @@
 
 ## Архитектура
 USGS API → Kafka → PostgreSQL → Pandas (аналитика) → BI
-                    (Airflow)
+Орекстрация с помощью Airflow               
 
 ## Описание компонентов
 ### Оркестрация
@@ -21,9 +21,10 @@ USGS API → Kafka → PostgreSQL → Pandas (аналитика) → BI
 ## DAG и Airflow
 
 | DAG | Периодичность | Действие |
+|-----|---------------|----------|
 | `earthquake_producer` | каждые 5 минут | Запускает producer |
 | `earthquake_consumer` | каждые 5 минут | Запускает consumer |
-| `earthquake_analytics`| раз в час| Агрегирует данные |
+| `earthquake_analytics`| раз в час | Агрегирует данные |
 
 ## Запуск
 
