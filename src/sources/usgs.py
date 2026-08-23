@@ -6,7 +6,7 @@ class USGSSource:
     def get_info(self):
         config = load_config()
         now = datetime.now().strftime("%Y-%m-%d")
-        usgs_resp = req.get(f"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-21&endtime={now}")
+        usgs_resp = req.get(f"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-21&endtime={now}")
         dict_resp = usgs_resp.json()
         result = []
 
@@ -26,11 +26,11 @@ class USGSSource:
             'event_id': features['id'],
             'magnitude': properties['mag'],
             'place': properties['place'],
-            'event_time': datetime.fromtimestamp(properties['time'] / 1000),
+            'event_time': datetime.fromtimestamp(properties['time'] / 1000).isoformat(),
             'tsunami': bool(properties['tsunami']),
             'sig': properties['sig'],
-            'nst':properties['nst'],
-            'rms': properties['rms'],
+            'count_of_stations':properties['nst'],
+            'mean_square_error': properties['rms'],
             'longitude': coordinates[0],
             'latitude': coordinates[1],
             'depth_km': coordinates[2]
