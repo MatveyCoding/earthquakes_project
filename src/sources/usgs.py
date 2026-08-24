@@ -1,10 +1,10 @@
 import requests as req
 from src.config import load_config
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class USGSSource:
     def __init__(self):
-        self.start_date = datetime.now().strftime("%Y-%m-%d")
+        self.start_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
     def get_info(self):
         config = load_config()
         now = datetime.now().strftime("%Y-%m-%d")

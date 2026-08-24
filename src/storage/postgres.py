@@ -22,8 +22,6 @@ class EarthquakeTable:
     def save_event(self, event:dict):
         with self.engine.connect() as conn:
             conn.execute(insert(self.earthquake_table).values(**event))
-            conn.commit()
-
         
 
         

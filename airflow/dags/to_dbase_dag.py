@@ -30,10 +30,26 @@ with DAG(
         task_id='producer_task',
         python_callable=activate_producer
     )
-    
-    task_consumer = BashOperator(
+    def run_consumer_task():
+        import subprocess
+        result = subprocess.run(
+            ['python', '-m', 'src.messaging.consumer'],
+            capture_output=True,
+            text=True,
+            cwd='/opt/airflow'
+        )
+        print(result.stdout)
+        if result.returncode != 0:
+            print(result.stderr)
+            raise Exception(f"Exit code: {result.returncode}")
+
+    task_consumer = PythonOperator(
         task_id='consumer_task',
-        bash_command='python -m src.messaging.consumer'
+        python_callable=run_consumer_task
     )
+
     
     task_producer >> task_consumer
+
+
+    
