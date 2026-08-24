@@ -3,10 +3,12 @@ from src.config import load_config
 from datetime import datetime
 
 class USGSSource:
+    def __init__(self):
+        self.start_date = datetime.now().strftime("%Y-%m-%d")
     def get_info(self):
         config = load_config()
         now = datetime.now().strftime("%Y-%m-%d")
-        usgs_resp = req.get(f"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-21&endtime={now}")
+        usgs_resp = req.get(f"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime={self.start_date}&endtime={now}")
         dict_resp = usgs_resp.json()
         result = []
 

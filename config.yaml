@@ -1,17 +1,17 @@
 source:
-  type:  usgs
-  url:  https://earthquake.usgs.gov/fdsnws/event/1/query
-  poll_interval_seconds:  3600
-  min_magnitude:  1.0
+  type: usgs
+  url: https://earthquake.usgs.gov/fdsnws/event/1/query
+  poll_interval_seconds: 3600
+  min_magnitude: 1.0
 
 kafka:
-  bootstrap_servers:  localhost:29092
-  topic:  earthquakes
+  bootstrap_servers: kafka:9092
+  topic: earthquakes
 
 storage:
-  type:  postgresql
-  host:  localhost
-  port:  5432
-  database:  earthquake_db
-  user:  postgres
-  password:  12345
+  type: postgresql
+  host: postgres
+  port: 5432
+  database: earthquake_db
+  user: postgres
+  password: 12345
