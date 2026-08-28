@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy import insert, Table, MetaData
+from sqlalchemy import insert, Table, MetaData, select, func
 
 
 class EarthquakeTable:
@@ -22,6 +22,14 @@ class EarthquakeTable:
     def save_event(self, event:dict):
         with self.engine.connect() as conn:
             conn.execute(insert(self.earthquake_table).values(**event))
+
+    def get_last_data_note(self):
+        with self.engine.connect() as conn:
+            result = conn.execute(select(func.max(self.earthquake_table.c.event_time)))
+
+        return result.scalar()
+
+
         
 
         

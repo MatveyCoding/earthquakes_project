@@ -3,18 +3,20 @@ from src.config import load_config
 from src.storage.postgres import EarthquakeTable
 import json
 import time
+import uuid
 
 config = load_config()
 
 consumer_config = {
     "bootstrap.servers": config['kafka']['bootstrap_servers'],
-    "group.id": 'consumer_api_earthquake',
+    "group.id": f'consumer-{uuid.uuid4()}',
     'auto.offset.reset': 'earliest',
+    'enable.auto.commit': False  # не сохранять позицию
 }
 
 consumer = Consumer(consumer_config)
 consumer.subscribe([config['kafka']['topic']])
-time.sleep(3)  
+time.sleep(10)  
 Earthquakes = EarthquakeTable(config)
 
 while True:

@@ -2,6 +2,7 @@ from confluent_kafka import Producer
 from src.config import load_config
 from src.sources.usgs import USGSSource
 from datetime import datetime
+import time
 import json
 
 def activate_producer():
@@ -34,7 +35,6 @@ def activate_producer():
             value = json.dumps(list_element_json).encode("utf-8")# потом поменять test_json
 
         )
-        print(f"Получены данные по землетрясению:{json_list}")
     producer.flush()
-    
+    time.sleep(5)
     

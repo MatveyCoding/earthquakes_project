@@ -20,7 +20,7 @@ default_args = {
 with DAG(
     dag_id='data_transfer_dag',
     default_args=default_args,
-    schedule='@daily',
+    schedule='0 */2 * * *',
     start_date=datetime.now(),
     catchup=False,
     max_active_runs=1,

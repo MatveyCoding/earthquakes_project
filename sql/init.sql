@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS earthquakes(
     event_time TIMESTAMP,
     tsunami BOOLEAN,
     sig INT,
-    ids TEXT,
     count_of_stations INT,
     mean_square_error DECIMAL(3,1),
     latitude DECIMAL(8,5),
