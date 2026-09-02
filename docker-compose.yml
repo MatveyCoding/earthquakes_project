@@ -100,6 +100,7 @@ services:
       - ./src:/opt/airflow/src
       - ./config.yaml:/opt/airflow/config.yaml
       - ./airflow/dags:/opt/airflow/dags
+      - ./.env:/opt/airflow/.env
     command: >
       bash -c "airflow db init &&
                airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com &&
@@ -122,6 +123,7 @@ services:
       - ./src:/opt/airflow/src
       - ./config.yaml:/opt/airflow/config.yaml
       - ./airflow/dags:/opt/airflow/dags
+      - ./.env:/opt/airflow/.env
     command: airflow scheduler
     logging:
       driver: json-file

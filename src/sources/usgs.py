@@ -9,7 +9,7 @@ class USGSSource:
 
         last_data = table.get_last_data_note()
         now = datetime.now()
-        hour = now.hour if (now.hour%2 ==0) else now.hour - 1
+        hour = now.hour if (now.hour%2 == 0) else now.hour - 1
         now = now.replace(hour=hour, minute=0, second=0, microsecond=0)
 
         if last_data:
