@@ -66,7 +66,9 @@ with DAG(
 
     task_producer_weather = PythonOperator(
         task_id='producer_task_weather',
-        python_callable=ap
+        python_callable=ap,
+        retries = 3,
+        retry_delay = timedelta(seconds = 30)
     )
 
     task_consumer_weather = PythonOperator(

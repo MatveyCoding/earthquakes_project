@@ -31,7 +31,7 @@ class EarthquakeTable:
     def get_columns(self, columns):
         selected = [getattr(self.earthquake_table.c, col) for col in columns]
         with self.engine.connect() as conn:
-            result = conn.execute(select(*selected))
+            result = conn.execute(select(*selected).where(func.date(self.earthquake_table.c.event_time) == func.current_date()))
             rows = result.fetchall()
         return zip(*rows)
 
@@ -58,7 +58,7 @@ class WeatherTable:
 
     def get_last_data_note(self):
         with self.engine.connect() as conn:
-            result = conn.execute(select(func.max(self.weather_table.c.event_time)))
+            result = conn.execute(select(func.max(self.weather_table.c.time)))
 
         return result.scalar()
 

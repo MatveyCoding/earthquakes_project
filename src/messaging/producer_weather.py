@@ -7,7 +7,7 @@ import time
 import json
 
 def activate_producer():
-
+    time.sleep(5)
     config = load_config()
 
     earthquake_table = EarthquakeTable(config)
@@ -30,7 +30,7 @@ def activate_producer():
     get_id = "weather_get_requsest"
     json_list = []
     latitudes, longitudes = earthquake_table.get_columns(['latitude', 'longitude'])
-    for i in range(100):                                  #(len(latitudes)):
+    for i in range(len(latitudes)):
         json_list.append(weather_data.get_info(latitudes[i], longitudes[i]))
         time.sleep(1)
 

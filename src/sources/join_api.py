@@ -29,15 +29,17 @@ def run_join():
                                     et.earthquake_table.c.latitude,
                                     wt.weather_table.c.temperature,
                                     wt.weather_table.c.wind_speed,
-                                    wt.weather_table.c.time 
+                                    wt.weather_table.c.time,
+                                    wt.weather_table.c.longitude
                                     ).select_from( wt.weather_table.join
                                     (
                                         et.earthquake_table,
                                         and_(
                                         func.round(et.earthquake_table.c.latitude, 2) ==  func.round(wt.weather_table.c.latitude,2),
-                                        func.round(et.earthquake_table.c.longitude,2) == func.round(wt.weather_table.c.longitude,2) 
+                                        func.round(et.earthquake_table.c.longitude,2) == func.round(wt.weather_table.c.longitude,2),
+                                        func.date(et.earthquake_table.c.event_time)  == func.date(wt.weather_table.c.time)
                                         ),
-                                        isouter=True
+                                        isouter=False
                                     )))
         rows = result.fetchall()
 
@@ -47,6 +49,7 @@ def run_join():
                 place=row.place,
                 magnitude=row.magnitude,
                 latitude=row.latitude,
+                longitude = row.longitude,
                 temperature=row.temperature,
                 wind_speed=row.wind_speed,
                 weather_time=row.time
