@@ -41,3 +41,10 @@ USGS API → Kafka → Airflow → PostgreSQL → Metabase(BI)
 - **Kafka UI** - http://localhost:8080
 
 - **Metabase(BI)** - http://localhost:3000
+
+## Скриншот дашборда(создаётся пользователем локально):
+Примерный дашборд, который может создать пользователь с помощью реализованных витрин:
+![Пример дашборда](images/dashboard_1.jpg)
+![Пример дашборда](images/dashboard_2.jpg)
+Пример, основанный на данных землетрясения в 2011 году:
+![Пример дашборда](images/japan_dashboard.jpg)
